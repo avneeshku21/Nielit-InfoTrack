@@ -1,6 +1,6 @@
 import { User } from "../models/user.model.js";
 import { v2 as cloudinary } from 'cloudinary';
-
+import bcrypt from "bcryptjs"
 export const register=async(req,res)=>{
 if(!req.files||Object.keys(req.files).length===0){
     return res.status(400).json({message:"User Photo is Required ! "})
@@ -28,7 +28,16 @@ if(!allowedFormats.includes(photo.mimetype))
     if(!cloudinaryResponse || cloudinaryResponse.error){
         console.log(cloudinaryResponse.error)
     }
-const newUser=new User({email,name, password, phone, education, role, photo:{
+
+ const hashedPassword   =await bcrypt.hash(password,10);
+const newUser=new User({
+    email,
+    name,
+     password:hashedPassword,
+     phone,
+      education, 
+      role, 
+      photo:{
     public_id:cloudinaryResponse.public_id,
     url:cloudinaryResponse.url,
 }});
