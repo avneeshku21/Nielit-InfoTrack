@@ -18,10 +18,17 @@ phone:{
 
 },
 photo:{
-    type:String,
+    public_id:{
+        type:String,
+        required:true
+    },
+    url:{
+        type:String,
+        required:true
+    }
     
 },
-education:{
+education:{ 
     type:String,
     required:true
 },
