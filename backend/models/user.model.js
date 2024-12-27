@@ -19,7 +19,7 @@ phone:{
 },
 photo:{
     type:String,
-    required:true
+    
 },
 education:{
     type:String,

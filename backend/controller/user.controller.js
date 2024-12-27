@@ -2,11 +2,11 @@ import { User } from "../models/user.model.js";
 
 export const register=async(req,res)=>{
     const {email,name,password,phone,education,role}=req.body;
-    if(!email|| !name || !password|| !phone||!education ||!role)
+    if(!email|| !name || !password|| !phone||!education|| !role)
     {
         return res.status(400).json({message:"All fields are required"})
     }
-    const user=User.findOne({email})
+    const user = await User.findOne({ email });
     if(user)
     {
         return res.status(400).json({message:"User Already exists with this email"});
