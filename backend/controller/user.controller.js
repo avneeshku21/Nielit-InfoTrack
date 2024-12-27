@@ -1,6 +1,10 @@
 import { User } from "../models/user.model.js";
 import { v2 as cloudinary } from 'cloudinary';
 import bcrypt from "bcryptjs"
+import createTokenAndSaveCookies from "../jwt/AuthToken.js"
+
+
+
 export const register=async(req,res)=>{
 if(!req.files||Object.keys(req.files).length===0){
     return res.status(400).json({message:"User Photo is Required ! "})
@@ -43,6 +47,53 @@ const newUser=new User({
 }});
 await newUser.save()
 if(newUser){
-    res.status(201).json({message:"User registered Successfully"})
+   const token= await createTokenAndSaveCookies(newUser._id,res)
+    res.status(201).json({message:"User registered Successfully",newUser,token:token})
 }
 };
+
+export const login=async(req,res)=>{
+    const {email ,password,role}=req.body;
+    try{
+        if(!email ||!password || !role)
+        {
+            return res.status(400).json({message:"Please fill required fields"}) 
+            }
+            const user= await User.findOne({email}).select("+password");
+            if(!user.password){
+                res.status(400).json({message:"Password Not matched"})
+            }
+const isMatch=await bcrypt.compare(password,user.password)
+if(!user||!isMatch)
+{
+    res.status(400).json({message:"Invalid email and Password"})
+}
+
+if(user.role!==role){
+    return res.status(403).json({message:`Given role${role}not found`})
+}
+const token =await createTokenAndSaveCookies(user._id,res);
+res.status(200).json({message:"User Login Successfully",user:{
+    _id:user.id,
+    name:user.name,
+    email:user.email,
+    role:user.role,
+    
+},
+token:token
+});
+
+
+
+
+
+
+
+
+    }catch(error)
+    {
+console.log(error)
+return res.status(500).json({error:"Internal Server error"})
+    }
+
+}
