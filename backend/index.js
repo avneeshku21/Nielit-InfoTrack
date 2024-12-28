@@ -4,6 +4,9 @@ import mongoose from "mongoose"
 import userRoute from "./routes/user.route.js"
 import fileUpload from "express-fileupload"
 import { v2 as cloudinary } from 'cloudinary';
+import courseRoute from "./routes/course.route.js"
+
+
 
 const app = express()
 dotenv.config()
@@ -30,10 +33,8 @@ console.log(error)
 }
 
 // ********defining Routes..........
-app.get('/', (req, res) => {
-  res.send('Yahu ji balle baale!')
-})
 app.use("/api/users",userRoute);
+app.use("/api/courses",courseRoute);
 
 //**************Cloudinary Code
 cloudinary.config({ 
