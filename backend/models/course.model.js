@@ -30,11 +30,11 @@ about:{
 },
 adminName:{
     type:String,
-    required:true
+   
 },
 adminPhpto:{
 type:String,
-required:true
+
 },
 
 })

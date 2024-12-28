@@ -5,16 +5,19 @@ import userRoute from "./routes/user.route.js"
 import fileUpload from "express-fileupload"
 import { v2 as cloudinary } from 'cloudinary';
 import courseRoute from "./routes/course.route.js"
-
+import cookieParser from "cookie-parser"
 
 
 const app = express()
 dotenv.config()
 const port = process.env.PORT;
 const MONOGO_URL=process.env.MONGO_URI
-//Middleware
-app.use(express.json())
-//file upload
+//*********Middleware
+app.use(express.json());
+app.use(cookieParser());
+
+
+//**********file upload
 app.use(fileUpload({
 useTempFiles:true,
 tempFileDir:"/tmp/",

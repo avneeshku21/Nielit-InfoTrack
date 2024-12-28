@@ -28,8 +28,8 @@ export const createCourse=async(req,res)=>{
             if(!cloudinaryResponse || cloudinaryResponse.error){
                 console.log(cloudinaryResponse.error)
             }
-    const adminName=req.user.name
-    const adminPhoto=req.user.photo
+    const adminName=req?.user?.name
+    const adminPhoto=req?.user?.photo
         const courseData={
             title,
             about,
