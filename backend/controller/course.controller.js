@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { Course } from "../models/course.model.js";
 import { v2 as cloudinary } from 'cloudinary';
 
@@ -51,4 +52,52 @@ export const createCourse=async(req,res)=>{
     return res.status(500).json({message:"Internal Server Error"})
     }
     };
-    
+
+    export const deleteCourse=async(req,res)=>{
+        const {id}=req.params;
+        const course=await Course.findById(id);
+        if(!course)
+        {
+            return res.status(404).json({message:"Course not Found"})
+        }
+        await course.deleteOne();
+        res.status(200).json({message:"Course deleted successfully"})
+    }
+
+    export const getAllCourses=async(req,res)=>{
+        const allCourses=await Course.find()
+        res.status(200).json(allCourses)
+    }
+
+    export const singleCourse=async(req,res)=>{
+        const {id}=req.params;
+        if(!mongoose.Types.ObjectId.isValid(id))
+        {
+            return res.status(400).json({message:"Invalid course id"})
+        }
+        const course=await Course.findById(id);
+        if(!course)
+        {
+            return res.status(404).json({message:"Course not Found! "})
+        }
+        res.status(200).json(course);
+    }
+
+    export const myCourse=async(req,res)=>{
+        const createdBy=req.user._id
+    const myCourse=await Course.find({createdBy});
+    res.status(200).json(myCourse);
+    }
+
+    export const updateCourse=async(req,res)=>{
+      const{id}=req.params;
+      if(!mongoose.Types.ObjectId.isValid(id))
+        {
+            return res.status(400).json({message:"Invalid Course id"})
+        }   
+        const updateCourse=await Course.findByIdAndUpdate(id,req.body,{new:true});
+        if(!updateCourse){
+            return res.status(404).json({message:"Course not Found"})
+        }
+        res.status(200).json(updateCourse);
+    }
