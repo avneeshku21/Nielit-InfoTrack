@@ -109,3 +109,9 @@ console.log(error)
 return res.status(500).json({message:"Internal Server error"})
   }
 }
+
+export const getMyProfile=async(req,res)=>{
+const user=await req.user;
+res.status(200).json(user)
+
+}
