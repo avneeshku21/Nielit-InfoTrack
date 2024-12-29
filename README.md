@@ -1,9 +1,6 @@
 # Student Information Management System
 
 This is a **Student Information Management System** designed to manage student data and course-related details. It provides an interface for administrators to handle all student data and CRUD operations while giving students access to specific features like course structures, results, and schedules.
-
----
-
 ## 🛠️ Features
 
 ### **Admin Features**
@@ -19,9 +16,6 @@ This is a **Student Information Management System** designed to manage student d
 - View course structure.
 - Check exam results and grades.
 - Access course schedules and timelines.
-
----
-
 ## 🚀 Technologies Used
 - **Frontend**: React.js
 - **Backend**: Node.js, Express.js
@@ -29,11 +23,9 @@ This is a **Student Information Management System** designed to manage student d
 - **Authentication**: JSON Web Token (JWT)
 - **Styling**: CSS/Tailwind/Bootstrap (choose your styling library)
 - **API Documentation**: Swagger (optional)
-
----
-
+- 
 ## 📂 Directory Structure
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/avneeshku021/Nielit-InfoTrack.git
 cd your-repo-name
 
 🔒 Authentication
