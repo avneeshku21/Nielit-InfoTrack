@@ -35,7 +35,7 @@ education:{
 role:{
     type:String,
     required:true,
-    enum:["user","admin"],
+    enum:["User","Admin"],
 
 },
 password:{
