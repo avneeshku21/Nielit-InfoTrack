@@ -6,7 +6,7 @@ import fileUpload from "express-fileupload"
 import { v2 as cloudinary } from 'cloudinary';
 import courseRoute from "./routes/course.route.js"
 import cookieParser from "cookie-parser"
-
+import cors from "cors"
 
 const app = express()
 dotenv.config()
@@ -15,6 +15,14 @@ const MONOGO_URL=process.env.MONGO_URI
 //*********Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL, 
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"], 
+  })
+);
 
 
 //**********file upload
@@ -38,7 +46,12 @@ console.log(error)
 // ********defining Routes..........
 app.use("/api/users",userRoute);
 app.use("/api/courses",courseRoute);
-
+app.get("/api/courses/allcourses", (req, res) => {
+  res.json([
+    { id: 1, name: "React Basics", description: "Learn the basics of React." },
+    { id: 2, name: "Advanced JavaScript", description: "Deep dive into JavaScript." },
+  ]);
+});
 //**************Cloudinary Code
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
