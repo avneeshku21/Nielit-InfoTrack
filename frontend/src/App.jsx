@@ -29,10 +29,10 @@ console.log(courses)
    <Route exact path="/contact"element={<Contact/>}/>
    <Route exact path="/login"element={<Login/>}/>
    <Route exact path="/register"element={<Register/>}/>
-   {/* <Route exact path="/dasboard"element={<Dasboard/>}/> */}
+   <Route exact path="/dasboard"element={<Dasboard/>}/>
 
    </Routes>
-  {/* { !hideNavbarFooter&&<Footer/>} */}
+  { !hideNavbarFooter&&<Footer/>}
   
 
    </>

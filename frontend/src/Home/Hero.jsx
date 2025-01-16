@@ -7,17 +7,17 @@ function Hero() {
   console.log(courses );
   return (
     <div className=" container mx-auto my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
-      {courses  && courses .length > 0 ? (
-        courses .slice(0, 4).map((element) => {
+      {courses  && courses.length > 0 ? (
+        courses.slice(0, 4).map((element) => {
           return (
             <Link
-              to={`/blog/${element._id}`}
+              to={`/courses/${element._id}`}
               key={element._id}
               className="bg-white rounded-lg hover:shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
             >
               <div className="group relative">
                 <img
-                  src={element.coursesImg.url}
+                  src={element.courseImg.url}
                   alt=""
                   className="w-full h-56 object-cover"
                 />
