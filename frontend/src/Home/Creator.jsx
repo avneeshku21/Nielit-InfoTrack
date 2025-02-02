@@ -28,7 +28,7 @@ function Creator() {
                 <div className="">
                   <img
                     src={element.photo.url}
-                    alt="blog"
+                    alt="courses"
                     className="md:w-56 md:h-56 object-cover border border-black rounded-full items-center "
                   />
                   <div className="text-center md:ml-[-130px]">

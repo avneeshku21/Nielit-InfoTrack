@@ -10,6 +10,7 @@ import Login from "../src/pages/Login.jsx"
 import Register from "../src/pages/Register.jsx"
 import Dasboard from "../src/pages/Dasboard.jsx"
 import { useAuth } from "./context/AuthProvider.jsx";
+import Creator from "./Home/Creator.jsx";
 
 function App() {
  const location =useLocation()
@@ -25,6 +26,7 @@ console.log(courses)
 
    <Route exact path="/"element={<Home/>}/>
    <Route exact path="/courses" element={<Courses/>}/>
+   <Route exact path="/creators" element={<Creator/>}/>
    <Route exact path="/about" element={<About/>}/>
    <Route exact path="/contact"element={<Contact/>}/>
    <Route exact path="/login"element={<Login/>}/>
