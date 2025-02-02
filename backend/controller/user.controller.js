@@ -115,3 +115,8 @@ const user=await req.user;
 res.status(200).json(user)
 
 }
+export const getAdmins=async (req,res)=>{
+    const admins=await User.find({role:"Admin"})
+    res.status(200).json(admins);
+    
+}
