@@ -37,7 +37,7 @@ tempFileDir:"/tmp/",
 //*******Database conneted
 
 try{
-mongoose.connect(MONGO_URL)
+mongoose.connect(MONOGO_URL)
 console.log("Connected to MongoDB")
 }catch(error){
 console.log(error)
