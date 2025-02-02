@@ -5,7 +5,7 @@ import { isAdmin, isAuthenticated } from '../middleware/authUser.js';
 
 const router = express.Router(); // Use `router` consistently
 
-router.post('/create',isAuthenticated, isAdmin("admin"), createCourse);
+router.post('/create',isAuthenticated, isAdmin("Admin"), createCourse);
 router.delete('/delete/:id', isAuthenticated ,isAdmin("admin"),deleteCourse)
 router.get("/allcourses" ,isAuthenticated,getAllCourses)
 router.get('/singleCourse/:id',isAuthenticated,singleCourse)

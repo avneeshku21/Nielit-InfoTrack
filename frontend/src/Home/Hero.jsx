@@ -7,7 +7,7 @@ function Hero() {
   console.log(courses );
   return (
     <div className=" container mx-auto my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
-      {courses  && courses.length > 0 ? (
+      {courses && courses.length > 0 ? (
         courses.slice(0, 4).map((element) => {
           return (
             <Link

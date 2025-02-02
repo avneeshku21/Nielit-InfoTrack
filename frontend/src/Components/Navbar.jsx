@@ -15,7 +15,7 @@ function Navbar() {
           <div className='mx-6'>
             <ul className='space-x-6 hidden md:flex'>
             <Link to="/" className='hover:text-blue-600'>HOME</Link>
-            <Link to="/stocks" className='hover:text-blue-600'>COURSE</Link>
+            <Link to="/courses" className='hover:text-blue-600'>COURSE</Link>
             <Link to="/creators" className='hover:text-blue-600'>CREATORS</Link>
             <Link to="/about" className='hover:text-blue-600'>ABOUT</Link>
             <Link to="/contact" className='hover:text-blue-600'>CONTACT</Link>

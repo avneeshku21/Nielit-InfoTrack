@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [education, setEducation] = useState(""); // Declare education state
-
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     
@@ -36,6 +36,7 @@ function Login() {
       setPassword("");
       setRole("");
       setEducation("");
+      navigate("/");
     } catch (error) {
       console.error("Error logging in:", error);
       alert("Login failed. Please try again.");
