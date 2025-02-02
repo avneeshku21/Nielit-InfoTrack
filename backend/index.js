@@ -46,12 +46,7 @@ console.log(error)
 // ********defining Routes..........
 app.use("/api/users",userRoute);
 //app.use("/api/courses",courseRoute);
-app.get("/api/courses/allcourses", (req, res) => {
-  res.json([
-    { id: 1, name: "React Basics", description: "Learn the basics of React." },
-    { id: 2, name: "Advanced JavaScript", description: "Deep dive into JavaScript." },
-  ]);
-});
+app.get("/api/courses/allcourses", courseRoute)
 
 /***************Cloudinary Code*******/
 cloudinary.config({ 
