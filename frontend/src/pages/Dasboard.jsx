@@ -11,9 +11,9 @@ function Dasboard() {
   const {profile,isAuthenticated}=useAuth()
   console.log(profile)
   console.log(isAuthenticated)
-  if (!isAuthenticated) {
-    return <Navigate to={"/"} />;
-  }
+  // if (!isAuthenticated) {
+  //   return <Navigate to={"/"} />;
+  // }
   
   return (
     <div>

@@ -46,7 +46,7 @@ console.log(error)
 // ********defining Routes..........
 app.use("/api/users",userRoute);
 //app.use("/api/courses",courseRoute);
-app.get("/api/courses", courseRoute)
+app.use("/api/courses", courseRoute)
 
 /***************Cloudinary Code*******/
 cloudinary.config({ 
