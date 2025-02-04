@@ -34,7 +34,7 @@ function TechCourse() {
 
     return (
         <div className="container mx-auto">
-            <h1 className="text-2xl font-semibold mb-4">Trending</h1>
+            <h1 className="text-2xl font-semibold mb-4">Technical</h1>
             {loading ? (
                 <div>Loading...</div>
             ) : courses.length > 0 ? (

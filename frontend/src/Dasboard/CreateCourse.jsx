@@ -7,28 +7,34 @@ function CreateCourse() {
   const [category, setCategory] = useState("");
   const [about, setAbout] = useState("");
 
-  const [courseImage, setCourseImage] = useState("");
-  const [courseImagePreview, setCourseImagePreview] = useState("");
+  const [courseImg, setCourseImg] = useState(null);
+  const [courseImgPreview, setCourseImgPreview] = useState("");
 
   const changePhotoHandler = (e) => {
-    console.log(e);
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      setCourseImagePreview(reader.result);
-      setCourseImage(file);
-    };
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        setCourseImgPreview(reader.result);
+        setCourseImg(file);
+      };
+    }
   };
 
   const handleCreateCourse = async (e) => {
     e.preventDefault();
+
+    if (!title || !category || !about || !courseImg) {
+      return toast.error("Please fill all required fields and upload an image.");
+    }
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("category", category);
     formData.append("about", about);
+    formData.append("courseImg", courseImg); // Changed from courseImage to courseImg
 
-    formData.append("courseImage", courseImage);
     try {
       const { data } = await axios.post(
         "http://localhost:4001/api/courses/create",
@@ -40,86 +46,87 @@ function CreateCourse() {
           },
         }
       );
-      console.log(data);
-      toast.success(data.message || "User registered successfully");
+      toast.success(data.message || "Course created successfully!");
+
+      // Reset form fields after successful creation
       setTitle("");
       setCategory("");
       setAbout("");
-      setCourseImage("");
-      setCourseImagePreview("");
+      setCourseImg(null);
+      setCourseImgPreview("");
     } catch (error) {
-      console.log(error);
-      toast.error(error.message || "Please fill the required fields");
+      console.error("Error creating course:", error.response?.data || error.message);
+      toast.error(error.response?.data?.message || "Failed to create course. Try again.");
     }
   };
+
   return (
-    <div>
-      <div className="min-h-screen  py-10">
-        <div className="max-w-4xl mx-auto p-6 border  rounded-lg shadow-lg">
-          <h3 className="text-2xl font-semibold mb-8">Create Course</h3>
-          <form onSubmit={handleCreateCourse} className="space-y-6">
-            <div className="space-y-2">
-              <label className="block text-lg">Category</label>
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-400 rounded-md outline-none"
-              >
-                <option value="">Select Category</option>
-                <option value="Devotion">Devotion</option>
-                <option value="Sports">Sports</option>
-                <option value="Coding">Coding</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="Business">Business</option>
-              </select>
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-lg">Title</label>
-              <input
-                type="text"
-                placeholder="Enter your blog title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-400   rounded-md outline-none"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-lg">Course Image</label>
-              <div className="flex items-center justify-center">
-                <img
-                  src={courseImagePreview ? `${courseImagePreview}` : "/imgPL.webp"}
-                  alt="Image"
-                  className="w-full max-w-sm h-auto rounded-md object-cover"
-                />
-              </div>
-              <input
-                type="file"
-                onChange={changePhotoHandler}
-                className="w-full px-3 py-2 border border-gray-400   rounded-md outline-none"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label className="block text-lg">About</label>
-              <textarea
-                rows="5"
-                placeholder="Write something about your blog"
-                value={about}
-                onChange={(e) => setAbout(e.target.value)}
-                className="w-full px-3 py-2  border border-gray-400  rounded-md outline-none"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors duration-200"
+    <div className="min-h-screen py-10">
+      <div className="max-w-4xl mx-auto p-6 border rounded-lg shadow-lg">
+        <h3 className="text-2xl font-semibold mb-8">Create Course</h3>
+        <form onSubmit={handleCreateCourse} className="space-y-6">
+          <div className="space-y-2">
+            <label className="block text-lg">Category</label>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-400 rounded-md outline-none"
             >
-              Post Course
-            </button>
-          </form>
-        </div>
+              <option value="">Select Category</option>
+              <option value="Devotion">Devotion</option>
+              <option value="Sports">Sports</option>
+              <option value="Coding">Coding</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Business">Business</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-lg">Title</label>
+            <input
+              type="text"
+              placeholder="Enter course title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-400 rounded-md outline-none"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-lg">Course Image</label>
+            <div className="flex items-center justify-center">
+              <img
+                src={courseImgPreview ? courseImgPreview : "/imgPL.webp"}
+                alt="Course Preview"
+                className="w-full max-w-sm h-auto rounded-md object-cover"
+              />
+            </div>
+            <input
+              type="file"
+              onChange={changePhotoHandler}
+              className="w-full px-3 py-2 border border-gray-400 rounded-md outline-none"
+              accept="image/png, image/jpeg, image/webp"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <label className="block text-lg">About</label>
+            <textarea
+              rows="5"
+              placeholder="Write something about the course"
+              value={about}
+              onChange={(e) => setAbout(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-400 rounded-md outline-none"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors duration-200"
+          >
+            Post Course
+          </button>
+        </form>
       </div>
     </div>
   );
