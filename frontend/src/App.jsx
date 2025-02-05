@@ -8,7 +8,7 @@ import About from "../src/pages/About.jsx"
 import Contact from "../src/pages/Contact.jsx"
 import Login from "../src/pages/Login.jsx"
 import Register from "../src/pages/Register.jsx"
-import Dasboard from "../src/pages/Dasboard.jsx"
+import Dasboard from "./pages/Dashboard.jsx"
 import { useAuth } from "./context/AuthProvider.jsx";
 import Creator from "./Home/Creator.jsx";
 import Detail from "./pages/Details.jsx";
@@ -32,7 +32,7 @@ console.log(courses)
    <Route exact path="/contact"element={<Contact/>}/>
    <Route exact path="/login"element={<Login/>}/>
    <Route exact path="/register"element={<Register/>}/>
-   <Route exact path="/dasboard"element={<Dasboard/>}/>
+   <Route exact path="/dashboard"element={<Dasboard/>}/>
 
    <Route exact path="/courses/:id" element={<Detail />} />
 
