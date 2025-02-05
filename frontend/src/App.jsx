@@ -11,6 +11,7 @@ import Register from "../src/pages/Register.jsx"
 import Dasboard from "../src/pages/Dasboard.jsx"
 import { useAuth } from "./context/AuthProvider.jsx";
 import Creator from "./Home/Creator.jsx";
+import Detail from "./pages/Details.jsx";
 
 function App() {
  const location =useLocation()
@@ -32,6 +33,8 @@ console.log(courses)
    <Route exact path="/login"element={<Login/>}/>
    <Route exact path="/register"element={<Register/>}/>
    <Route exact path="/dasboard"element={<Dasboard/>}/>
+
+   <Route exact path="/courses/:id" element={<Detail />} />
 
    </Routes>
   { !hideNavbarFooter&&<Footer/>}

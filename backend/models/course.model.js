@@ -32,7 +32,7 @@ adminName:{
     type:String,
    
 },
-adminPhpto:{
+adminPhoto:{
 type:String,
 
 },

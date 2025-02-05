@@ -1,22 +1,41 @@
-import React, { useState, } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoCloseSharp } from "react-icons/io5";
 import { useAuth } from "../context/AuthProvider"; // Import the AuthProvider context
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function Navbar() {
   const [show, setShow] = useState(false);
-  const { profile } = useAuth(); // Get user profile from context
-  const isAdmin = profile?.role === "Admin"; // Check if user is Admin
+  const { profile, isAuthenticated, setIsAuthenticated } = useAuth();
+  const navigateTo = useNavigate();
 
-  // Debugging
-  console.log("User Profile:", profile);
-  console.log("Is Admin:", isAdmin);
+  // Check if the user is an Admin
+  const isAdmin = profile?.user?.role === "admin";
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.get("http://localhost:4001/api/users/logout", {
+        withCredentials: true,
+      });
+      console.log(data);
+      localStorage.removeItem("jwt"); // Remove token from localStorage on logout
+      toast.success(data.message);
+      setIsAuthenticated(false);
+      navigateTo("/login");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to logout");
+    }
+  };
 
   return (
     <>
       <nav className="shadow-lg px-4 py-3">
         <div className="flex items-center justify-between container mx-auto">
+          {/* Brand Name */}
           <div className="font-semibold text-xl">
             Nielit-<span className="text-blue-600">Track</span>
           </div>
@@ -42,14 +61,14 @@ function Navbar() {
             </ul>
 
             {/* Mobile Menu Icon */}
-            <div className="md:hidden" onClick={() => setShow(!show)}>
+            <div className="md:hidden cursor-pointer" onClick={() => setShow(!show)}>
               {show ? <IoCloseSharp size={24} /> : <AiOutlineMenu size={24} />}
             </div>
           </div>
 
           {/* Right Section */}
-          <div className="space-x-2 hidden md:flex">
-            {/* ✅ Show Dashboard button only for Admins */}
+          <div className="space-x-2 hidden md:flex items-center">
+            {/* Show Dashboard button only for Admins */}
             {isAdmin && (
               <Link
                 to="/dashboard"
@@ -58,12 +77,30 @@ function Navbar() {
                 Dashboard
               </Link>
             )}
-            <Link
-              to="/login"
-              className="bg-red-600 text-white font-semibold hover:bg-red-800 duration-300 px-4 py-2 rounded-md"
-            >
-              Login
-            </Link>
+
+            {/* Show Logout and Profile if authenticated, otherwise show Login */}
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <img
+                  src={profile?.user?.photo || "/default-avatar.jpg"}
+                  alt={profile?.user?.name}
+                  className="w-10 h-10 rounded-full border-2 border-yellow-400"
+                />
+                <button
+                  onClick={handleLogout}
+                  className="bg-red-600 text-white font-semibold hover:bg-red-800 duration-300 px-4 py-2 rounded-md"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="bg-red-600 text-white font-semibold hover:bg-red-800 duration-300 px-4 py-2 rounded-md"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
 
@@ -71,21 +108,45 @@ function Navbar() {
         {show && (
           <div className="bg-white h-screen flex items-center justify-center md:hidden">
             <ul className="flex flex-col space-y-6 text-xl text-center">
-              <Link to="/" className="hover:text-blue-600" onClick={() => setShow(!show)}>
+              <Link to="/" className="hover:text-blue-600" onClick={() => setShow(false)}>
                 HOME
               </Link>
-              <Link to="/courses" className="hover:text-blue-600" onClick={() => setShow(!show)}>
+              <Link to="/courses" className="hover:text-blue-600" onClick={() => setShow(false)}>
                 COURSE
               </Link>
-              <Link to="/creators" className="hover:text-blue-600" onClick={() => setShow(!show)}>
+              <Link to="/creators" className="hover:text-blue-600" onClick={() => setShow(false)}>
                 CREATORS
               </Link>
-              <Link to="/about" className="hover:text-blue-600" onClick={() => setShow(!show)}>
+              <Link to="/about" className="hover:text-blue-600" onClick={() => setShow(false)}>
                 ABOUT
               </Link>
-              <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(!show)}>
+              <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(false)}>
                 CONTACT
               </Link>
+
+              {/* Show Dashboard button for Admins */}
+              {isAdmin && (
+                <Link to="/dashboard" className="hover:text-blue-600" onClick={() => setShow(false)}>
+                  DASHBOARD
+                </Link>
+              )}
+
+              {/* Show Logout if authenticated, otherwise show Login */}
+              {isAuthenticated ? (
+                <button
+                  onClick={() => {
+                    setShow(false);
+                    handleLogout();
+                  }}
+                  className="text-red-600 hover:underline"
+                >
+                  LOGOUT
+                </button>
+              ) : (
+                <Link to="/login" className="text-red-600 hover:underline" onClick={() => setShow(false)}>
+                  LOGIN
+                </Link>
+              )}
             </ul>
           </div>
         )}
