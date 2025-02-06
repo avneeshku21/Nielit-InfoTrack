@@ -48,7 +48,7 @@ function About() {
         Personal Interests and Inspiration:
       </h2>
       <p>
-      This project is a collaborative effort by  <strong> Avneesh, Bhoomika, Aditya, Anjali, Esha, and Nikita </strong> part of our internship at NIELIT. Our goal was to build an intuitive and scalable platform that simplifies course management. We combined our skills in frontend and backend development to deliver a high-quality solution that enhances learning experiences.
+      This project is a collaborative effort by  <strong> Avneesh,Dougoulen, Bhoomika, Aditya, Anjali, Esha, and Nikita </strong> part of our internship at NIELIT. Our goal was to build an intuitive and scalable platform that simplifies course management. We combined our skills in frontend and backend development to deliver a high-quality solution that enhances learning experiences.
 
 
       </p>

@@ -8,14 +8,13 @@ import toast from "react-hot-toast";
 
 function Sidebar({ setComponent }) {
   const { profile, setIsAuthenticated } = useAuth();
-  // console.log(profile?.user);
   const navigateTo = useNavigate();
-
   const [show, setShow] = useState(false);
 
   const handleComponents = (value) => {
     setComponent(value);
   };
+
   const gotoHome = () => {
     navigateTo("/");
   };
@@ -28,19 +27,19 @@ function Sidebar({ setComponent }) {
         { withCredentials: true }
       );
       toast.success(data.message);
-       localStorage.removeItem("jwt"); // deleting token in localStorage so that if user logged out it will goes to login page
+      localStorage.removeItem("jwt"); // Remove token from localStorage
       setIsAuthenticated(false);
       navigateTo("/login");
     } catch (error) {
       console.log(error);
-      toast.error(error.data.message || "Failed to logout");
+      toast.error(error.response?.data?.message || "Failed to logout");
     }
   };
 
   return (
     <>
       <div
-        className="sm:hidden fixed top-4 left-4 z-50"
+        className="sm:hidden fixed top-4 left-4 z-50 cursor-pointer"
         onClick={() => setShow(!show)}
       >
         <CiMenuBurger className="text-2xl" />
@@ -56,44 +55,44 @@ function Sidebar({ setComponent }) {
         >
           <BiSolidLeftArrowAlt className="text-2xl" />
         </div>
-        <div className="text-center">
+        <div className="text-center p-4">
           <img
             className="w-24 h-24 rounded-full mx-auto mb-2"
-            src={profile?.user?.photo?.url}
-            alt=""
+            src={profile?.user?.photo?.url || "/default-profile.png"}
+            alt="User"
           />
-          <p className="text-lg font-semibold">{profile?.user?.name}</p>
+          <p className="text-lg font-semibold">{profile?.user?.name || "User"}</p>
         </div>
-        <ul className="space-y-6 mx-4">
+        <ul className="space-y-4 mx-4">
           <button
-            onClick={() => handleComponents("My Course")}
+            onClick={() => handleComponents("MyCourses")}
             className="w-full px-4 py-2 bg-green-500 rounded-lg hover:bg-green-700 transition duration-300"
           >
-            MY COURSE
+            My Courses
           </button>
           <button
-            onClick={() => handleComponents("Create Course")}
+            onClick={() => handleComponents("CreateCourse")}
             className="w-full px-4 py-2 bg-blue-400 rounded-lg hover:bg-blue-700 transition duration-300"
           >
-            CREATE COURSE
+            Create Course
           </button>
           <button
-            onClick={() => handleComponents("My Profile")}
+            onClick={() => handleComponents("MyProfile")}
             className="w-full px-4 py-2 bg-pink-500 rounded-lg hover:bg-pink-700 transition duration-300"
           >
-            MY PROFILE
+            My Profile
           </button>
           <button
             onClick={gotoHome}
             className="w-full px-4 py-2 bg-red-500 rounded-lg hover:bg-red-700 transition duration-300"
           >
-            HOME
+            Home
           </button>
           <button
             onClick={handleLogout}
             className="w-full px-4 py-2 bg-yellow-500 rounded-lg hover:bg-yellow-700 transition duration-300"
           >
-            LOGOUT
+            Logout
           </button>
         </ul>
       </div>
