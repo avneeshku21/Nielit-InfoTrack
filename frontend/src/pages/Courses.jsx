@@ -27,7 +27,7 @@ function Courses() {
 
   return (
     <div className="container mx-auto my-12 p-4">
-      <h1 className="text-2xl font-bold mb-6">All Courses</h1>
+      <h1 className=" text-center text-2xl font-bold mb-5">All COURSES</h1>
       <p className="text-center mb-8">
         Explore a variety of courses across different domains.
       </p>

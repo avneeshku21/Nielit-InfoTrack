@@ -53,7 +53,7 @@ function Sidebar({ setComponent }) {
         <ul className="space-y-4 mx-4">
           <button onClick={() => setComponent("MyCourses")} className="w-full px-4 py-2 bg-green-500 rounded-lg hover:bg-green-700 transition duration-300">My Courses</button>
           {profile?.role === "Admin" && (
-            <button onClick={() => setComponent("AdminDashboard")} className="w-full px-4 py-2 bg-purple-500 rounded-lg hover:bg-purple-700 transition duration-300">Admin Dashboard</button>
+            <button onClick={() => setComponent("CreateCourse")} className="w-full px-4 py-2 bg-purple-500 rounded-lg hover:bg-purple-700 transition duration-300">Create Course</button>
           )}
           <button onClick={() => setComponent("MyProfile")} className="w-full px-4 py-2 bg-pink-500 rounded-lg hover:bg-pink-700 transition duration-300">My Profile</button>
           <button onClick={() => navigateTo("/")} className="w-full px-4 py-2 bg-red-500 rounded-lg hover:bg-red-700 transition duration-300">Home</button>
