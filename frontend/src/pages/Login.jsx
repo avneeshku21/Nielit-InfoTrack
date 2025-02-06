@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
 
     // Debugging Toast
-    toast.info("Toast is working!", { autoClose: 2000 });
+    // toast.info("Toast is working!", { autoClose: 2000 });
 
     if (!email || !password || !role) {
       toast.error("Please fill in all required fields", { autoClose: 3000 });

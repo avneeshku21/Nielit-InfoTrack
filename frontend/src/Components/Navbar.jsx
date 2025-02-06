@@ -85,7 +85,7 @@ function Navbar() {
                 <img
                   src={profile?.photo?.url || "/default-avatar.jpg"}
                   alt={profile?.name}
-                  className="w-10 h-10 rounded-full border-2 border-yellow-400"
+                  className="w-12 h-12 rounded-full border-2 border-yellow-400"
                 />
                 <button
                   onClick={handleLogout}
