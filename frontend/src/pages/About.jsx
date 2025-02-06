@@ -8,14 +8,11 @@ function About() {
     <div className="container mx-auto my-12 p-4 space-y-9">
       <h1 className="text-2xl font-bold mb-6">About</h1>
       <p>
-        This is{" "}
+        This is a{" "}
         <strong className="text-blue-800 font-semibold hover:scale-105 duration-500">
-          {profile?.user?.name}
+          {/* {profile?.user?.name} */}
         </strong>{" "}
-        a proficient full stack developer with a robust skill set spanning both
-        front-end and back-end technologies. With a passion for building
-        dynamic, responsive, and user-friendly web applications, Avii excels in
-        crafting seamless digital experiences.
+        NIELIT Track Project is an advanced course management system designed and developed by our internship team at NIELIT. The platform enables administrators to create, update, and delete courses, while users can access structured course content seamlessly. The project leverages modern web technologies to provide a dynamic and user-friendly experience.
       </p>
       <h2 className="font-semibold text-blue-800 text-xl">
         Technical Expertise:
@@ -34,15 +31,10 @@ function About() {
         deployment.
       </p>
       <h2 className="font-semibold text-blue-800 text-xl">
-        Professional Highlights:
+      Technologies Used
       </h2>
       <p>
-        Successfully developed and deployed numerous full-stack applications,
-        demonstrating strong problem-solving skills and a keen eye for detail.
-        Collaborated with cross-functional teams to deliver high-quality
-        software solutions within tight deadlines. Continuously learning and
-        adapting to emerging technologies and industry trends to stay ahead in
-        the fast-evolving tech landscape.
+      The project is built using React.js, Express.js, Node.js, and MongoDB, ensuring a full-stack web development approach. The UI is designed with HTML, Tailwind CSS, and JavaScript, providing a responsive and modern interface. Additionally, we integrated Web3Form for handling forms and Cloudinary for efficient image storage. The application effectively utilizes React state management for smooth user interactions.
       </p>
       <br />
       <span>
@@ -56,13 +48,9 @@ function About() {
         Personal Interests and Inspiration:
       </h2>
       <p>
-        Beyond his professional achievements, Avii is a big fan of cricket and
-        holds immense admiration for <strong> King Kohli.</strong> His favorite
-        person and biggest inspiration is his twin brother,{" "}
-        <strong>Ankush.</strong> Their friendly rivalry and deep bond have
-        significantly shaped Akhil’s journey. Ankush is not only a great
-        competitor but also a steadfast friend, constantly motivating Akhil to
-        strive for excellence.
+      This project is a collaborative effort by  <strong> Avneesh, Bhoomika, Aditya, Anjali, Esha, and Nikita </strong> part of our internship at NIELIT. Our goal was to build an intuitive and scalable platform that simplifies course management. We combined our skills in frontend and backend development to deliver a high-quality solution that enhances learning experiences.
+
+
       </p>
     </div>
   );
