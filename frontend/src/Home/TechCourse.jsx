@@ -64,7 +64,7 @@ function TechCourse() {
                                     </h1>
                                     <div className="flex items-center">
                                         <img
-                                            src={element.adminPhoto?.url || "/default-avatar.jpg"} // Correct field for admin photo
+                                            src={element.adminPhoto || "/default-avatar.jpg"} // Correct field for admin photo
                                             alt={element.adminName || "Author Avatar"}
                                             className="w-10 h-10 rounded-full"
                                         />

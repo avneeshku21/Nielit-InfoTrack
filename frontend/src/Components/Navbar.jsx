@@ -83,7 +83,7 @@ function Navbar() {
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <img
-                  src={profile?.photo || "/default-avatar.jpg"}
+                  src={profile?.photo?.url || "/default-avatar.jpg"}
                   alt={profile?.name}
                   className="w-10 h-10 rounded-full border-2 border-yellow-400"
                 />
@@ -95,7 +95,7 @@ function Navbar() {
                 </button>
               </div>
             ) : (
-              <Link to="/login" className="bg-red-600 text-white font-semibold hover:bg-red-800 duration-300 px-4 py-2 rounded-md">
+              <Link to="/login" className="bg-blue-700 text-white font-semibold hover:bg-blue-900 duration-300 px-4 py-2 rounded-md">
                 Login
               </Link>
             )}
@@ -123,7 +123,7 @@ function Navbar() {
               {isAuthenticated ? (
                 <button onClick={handleLogout} className="text-red-600 hover:underline">LOGOUT</button>
               ) : (
-                <Link to="/login" className="text-red-600 hover:underline" onClick={() => setShow(false)}>LOGIN</Link>
+                <Link to="/login" className="text-blue-800 hover:underline" onClick={() => setShow(false)}>LOGIN</Link>
               )}
             </ul>
           </div>

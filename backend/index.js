@@ -5,6 +5,7 @@ import userRoute from "./routes/user.route.js"
 import fileUpload from "express-fileupload"
 import { v2 as cloudinary } from 'cloudinary';
 import courseRoute from "./routes/course.route.js"
+import { getAllCourses } from "./controller/course.controller.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 
@@ -47,7 +48,7 @@ console.log(error)
 app.use("/api/users",userRoute);
 //app.use("/api/courses",courseRoute);
 app.use("/api/courses", courseRoute)
-
+app.use("/api/courses", getAllCourses);
 /***************Cloudinary Code*******/
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
