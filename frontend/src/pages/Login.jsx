@@ -2,22 +2,25 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
-import toast from "react-hot-toast";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";  // ✅ Ensure CSS is imported
 
 function Login() {
   const { setIsAuthenticated, setProfile } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(""); // Role is required
+  const [role, setRole] = useState(""); 
   const navigate = useNavigate();
 
   // Handle Login Submission
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Validate Inputs
+    // Debugging Toast
+    toast.info("Toast is working!", { autoClose: 2000 });
+
     if (!email || !password || !role) {
-      toast.error("Please fill in all required fields", { duration: 3000 });
+      toast.error("Please fill in all required fields", { autoClose: 3000 });
       return;
     }
 
@@ -35,10 +38,10 @@ function Login() {
 
       // Store Token & Update State
       localStorage.setItem("jwt", data.token);
-      setProfile(data.user); // Ensure `user` object is set correctly
+      setProfile(data.user);
       setIsAuthenticated(true);
 
-      toast.success("Logged in successfully!", { duration: 3000 });
+      toast.success("Logged in successfully!", { autoClose: 3000 });
 
       // Reset Form
       setEmail("");
@@ -49,10 +52,7 @@ function Login() {
       navigate("/");
     } catch (error) {
       console.error("Error logging in:", error);
-      toast.error(
-        error.response?.data?.message || "Invalid email or password",
-        { duration: 3000 }
-      );
+      toast.error(error.response?.data?.message || "Invalid email or password", { autoClose: 3000 });
     }
   };
 
@@ -118,6 +118,9 @@ function Login() {
           </button>
         </form>
       </div>
+
+      {/* Toast Notification Container (Inside Component) */}
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 }
