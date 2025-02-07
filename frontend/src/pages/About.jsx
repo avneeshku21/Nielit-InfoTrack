@@ -38,14 +38,10 @@ function About() {
       </p>
       <br />
       <span>
-        Avii is dedicated to leveraging his expertise to contribute to
-        innovative projects and drive technological advancements. Whether
-        working on front-end interfaces or back-end logic, he is passionate
-        about delivering exceptional digital solutions that meet user needs and
-        exceed client expectations.
+       Along with the team, is committed to leveraging their expertise to build innovative and scalable solutions. From front-end interfaces to back-end logic, the team is passionate about delivering exceptional digital experiences that enhance learning and streamline course management.
       </span>
       <h2 className="font-semibold text-blue-800 text-xl">
-        Personal Interests and Inspiration:
+      Meet the Minds Behind the Project
       </h2>
       <p>
       This project is a collaborative effort by  <strong> Avneesh, Dougoulen, Bhoomika, Aditya, Anjali, Esha, and Nikita </strong> part of our internship at NIELIT. Our goal was to build an intuitive and scalable platform that simplifies course management. We combined our skills in frontend and backend development to deliver a high-quality solution that enhances learning experiences.

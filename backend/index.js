@@ -8,6 +8,7 @@ import courseRoute from "./routes/course.route.js"
 import { getAllCourses } from "./controller/course.controller.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import courseScheduleRoutes from "./routes/courseSchedule.route.js";
 
 const app = express()
 dotenv.config()
@@ -47,6 +48,7 @@ console.log(error)
 // ********defining Routes..........
 app.use("/api/users",userRoute);
 //app.use("/api/courses",courseRoute);
+app.use("/api/courseSchedule", courseScheduleRoutes); 
 app.use("/api/courses", courseRoute)
 app.use("/api/courses", getAllCourses);
 /***************Cloudinary Code*******/

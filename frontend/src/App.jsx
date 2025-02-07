@@ -12,6 +12,7 @@ import Dasboard from "./pages/Dashboard.jsx"
 import { useAuth } from "./context/AuthProvider.jsx";
 import Creator from "./Home/Creator.jsx";
 import Detail from "./pages/Details.jsx";
+import CourseSchedule from "./pages/CourseSchedule.jsx"
 
 function App() {
  const location =useLocation()
@@ -31,6 +32,7 @@ console.log(courses)
    <Route exact path="/about" element={<About/>}/>
    <Route exact path="/contact"element={<Contact/>}/>
    <Route exact path="/login"element={<Login/>}/>
+   {/* <Route path="/course-schedule" element={<CourseSchedule />} /> */}
    <Route exact path="/register"element={<Register/>}/>
    <Route exact path="/dashboard"element={<Dasboard/>}/>
 
