@@ -5,9 +5,9 @@ const token=jwt.sign({userId},process.env.JWT_SECRET_KEY,{
     expiresIn:"7d"
 })
 res.cookie("jwt",token,{
-    httpOnly:true,
+    httpOnly:false,
     secure:true,
-    sameSite:"strict"
+    sameSite:"none"
 })
 await User.findByIdAndUpdate(userId,{token})
 return token;
