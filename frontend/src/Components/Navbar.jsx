@@ -1,3 +1,4 @@
+// src/Components/Navbar.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -62,8 +63,8 @@ function Navbar() {
               <Link to="/creators" className="hover:text-blue-600">CREATORS</Link>
               <Link to="/about" className="hover:text-blue-600">ABOUT</Link>
               <Link to="/contact" className="hover:text-blue-600">CONTACT</Link>
+              <Link to="/results" className="hover:text-blue-600">RESULTS</Link> {/* Add Results link */}
             </ul>
-            {/* <Link to="/course-schedule"className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link> */}
 
             {/* Mobile Menu Icon */}
             <div className="md:hidden cursor-pointer" onClick={() => setShow(!show)}>
@@ -111,8 +112,8 @@ function Navbar() {
               <Link to="/courses" className="hover:text-blue-600" onClick={() => setShow(false)}>COURSE</Link>
               <Link to="/creators" className="hover:text-blue-600" onClick={() => setShow(false)}>CREATORS</Link>
               <Link to="/about" className="hover:text-blue-600" onClick={() => setShow(false)}>ABOUT</Link>
-              <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTACT</Link>
-              <Link to="/course-schedule"className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link>
+              <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTACT</Link> 
+              <Link to="/course-schedule" className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link>
 
               {/* Show Dashboard button for Admins */}
               {isAdmin && (

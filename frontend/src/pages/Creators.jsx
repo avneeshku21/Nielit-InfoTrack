@@ -20,6 +20,24 @@ function Creators() {
     };
     fetchCreators();
   }, []);
+  useEffect(() => {
+    const fetchCreators = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:4001/api/users/admins",
+          {
+            withCredentials: true,
+          }
+        );
+        console.log(response.data); // Check full response
+        setCreators(response.data.admins);
+      } catch (error) {
+        console.log("Error fetching creators:", error);
+      }
+    };
+    fetchCreators();
+  }, []);
+  
 
   return (
     <div className="flex flex-wrap justify-center items-center my-20 bg-gray-100">
