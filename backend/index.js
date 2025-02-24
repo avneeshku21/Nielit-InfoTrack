@@ -26,6 +26,30 @@ app.use(
   })
 );
 
+// app.get("/api/contests", async (req, res) => {
+//   try {
+//     const response = await fetch("https://contest-hive.vercel.app/api/all");
+    
+//     if (!response.ok) {
+//       throw new Error(`Failed to fetch: ${response.status}`);
+//     }
+
+//     const data = await response.json();
+
+//     if (!Array.isArray(data)) {
+//       throw new Error("Invalid API response: Expected an array");
+//     }
+
+//     res.json(data);
+//   } catch (error) {
+//     console.error("Error fetching contests:", error);
+//     res.status(500).json({ error: error.message });
+//   }
+// });
+
+
+
+
 
 //**********file upload
 app.use(fileUpload({

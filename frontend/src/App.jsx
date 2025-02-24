@@ -14,6 +14,8 @@ import Creator from "./Home/Creator.jsx";
 import Detail from "./pages/Details.jsx";
 import CourseSchedule from "./pages/CourseSchedule.jsx"
 
+import AllContests from "./pages/AllContests.jsx";
+
 function App() {
  const location =useLocation()
  const hideNavbarFooter=["/dasboard","/login","/register"].includes(location.pathname)
@@ -32,11 +34,13 @@ console.log(courses)
    <Route exact path="/about" element={<About/>}/>
    <Route exact path="/contact"element={<Contact/>}/>
    <Route exact path="/login"element={<Login/>}/>
-   {/* <Route path="/course-schedule" element={<CourseSchedule />} /> */}
+   <Route path="/course-schedule" element={<CourseSchedule />} />
    <Route exact path="/register"element={<Register/>}/>
    <Route exact path="/dashboard"element={<Dasboard/>}/>
 
    <Route exact path="/courses/:id" element={<Detail />} />
+  
+   <Route path="/contests" element={<AllContests />} />
 
    </Routes>
   { !hideNavbarFooter&&<Footer/>}

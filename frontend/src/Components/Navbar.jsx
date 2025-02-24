@@ -62,8 +62,11 @@ function Navbar() {
               <Link to="/creators" className="hover:text-blue-600">CREATORS</Link>
               <Link to="/about" className="hover:text-blue-600">ABOUT</Link>
               <Link to="/contact" className="hover:text-blue-600">CONTACT</Link>
+              <Link to="/contests" className="hover:text-blue-600">
+            CONTESTS
+          </Link>
+            <Link to="/course-schedule"className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link>
             </ul>
-            {/* <Link to="/course-schedule"className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link> */}
 
             {/* Mobile Menu Icon */}
             <div className="md:hidden cursor-pointer" onClick={() => setShow(!show)}>
@@ -112,6 +115,7 @@ function Navbar() {
               <Link to="/creators" className="hover:text-blue-600" onClick={() => setShow(false)}>CREATORS</Link>
               <Link to="/about" className="hover:text-blue-600" onClick={() => setShow(false)}>ABOUT</Link>
               <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTACT</Link>
+              <Link to="/contests" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTESTS</Link>
               <Link to="/course-schedule"className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link>
 
               {/* Show Dashboard button for Admins */}
