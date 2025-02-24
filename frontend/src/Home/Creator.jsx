@@ -26,7 +26,7 @@ function Creator() {
       <h1 className="text-2xl font-semibold mb-6">Popular Creators</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-5">
         {admin.length > 0 ? (
-          admin.slice(0, 4).map((element) => (
+          admin.slice(0, 6).map((element) => (
             <div key={element._id}>
               <div className="flex flex-col items-center">
                 <img

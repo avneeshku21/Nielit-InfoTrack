@@ -14,8 +14,8 @@ import { staticData } from "../studentdata.js";
 
 const Results = () => {
   const courses = [
-    { id: 1, name: "ALevel-2023" },
-    { id: 2, name: "OLevel-2024" },
+    { id: 1, name: "A-Level-2023" },
+    { id: 2, name: "O-Level-2024" },
     { id: 3, name: "IGCSE-2023" },
     { id: 4, name: "SAT-2024" },
   ];

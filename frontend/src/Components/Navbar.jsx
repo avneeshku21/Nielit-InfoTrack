@@ -64,6 +64,7 @@ function Navbar() {
               <Link to="/about" className="hover:text-blue-600">ABOUT</Link>
               
               <Link to="/contests" className="hover:text-blue-600">CONTESTS</Link>
+              <Link to="/results" className="hover:text-blue-600">RESULTS</Link>
               <Link to="course-schedule" className="hover:text-blue-600">SCHEDULE</Link>
             </ul>
 
@@ -115,6 +116,7 @@ function Navbar() {
               <Link to="/about" className="hover:text-blue-600" onClick={() => setShow(false)}>ABOUT</Link>
               <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTACT</Link>
               <Link to="/contests" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTESTS</Link>
+              <Link to="/results" className="hover:text-blue-600" onClick={() => setShow(false)}>RESULTS</Link>
               <Link to="/course-schedule"className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link>
 
               {/* Show Dashboard button for Admins */}
