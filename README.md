@@ -1,4 +1,4 @@
-# Student Information Management System
+# NIELIT-INFOTRACK
 
 This is a **Student Information Management System** designed to manage student data and course-related details. It provides an interface for administrators to handle all student data and CRUD operations while giving students access to specific features like course structures, results, and schedules.
 ## 🛠️ Features
@@ -17,13 +17,13 @@ This is a **Student Information Management System** designed to manage student d
 - Check exam results and grades.
 - Access course schedules and timelines.
 ## 🚀 Technologies Used
-- **Frontend**: React.js
+- **Frontend**: React.js,Web3Form
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: JSON Web Token (JWT)
 - **Styling**: CSS/Tailwind/Bootstrap (choose your styling library)
 - **API Documentation**: Swagger (optional)
-- 
+- **AllCoding Contest**: AllCoding Contest is a competitive coding platform where participants solve algorithmic and logical problems within a given time frame.  https://contest-hive.vercel.app/
 ## 📂 Directory Structure
 git clone https://github.com/avneeshku021/Nielit-InfoTrack.git
 cd your-repo-name
