@@ -9,13 +9,12 @@ import About from "../src/pages/About.jsx";
 import Contact from "../src/pages/Contact.jsx";
 import Login from "../src/pages/Login.jsx";
 import Register from "../src/pages/Register.jsx";
-import Dasboard from "./pages/Dashboard.jsx";
+import Dashboard from "./pages/Dashboard.jsx"; // ✅ Fixed Typo (Dashboard)
 import { useAuth } from "./context/AuthProvider.jsx";
 import Creator from "./Home/Creator.jsx";
 import Detail from "./pages/Details.jsx";
 import CourseSchedule from "./pages/CourseSchedule.jsx";
-import Results from "./pages/Results.jsx"; // Import the Results component
-
+// import Results from "./pages/Results.jsx"; // ✅ Correct placement
 import AllContests from "./pages/AllContests.jsx";
 
 function App() {
@@ -26,48 +25,24 @@ function App() {
   console.log(courses);
 
   return (
-<<<<<<< HEAD
-   <>
-   {!hideNavbarFooter&&<Navbar/>}
-   <Routes>
-
-   <Route exact path="/"element={<Home/>}/>
-   <Route exact path="/courses" element={<Courses/>}/>
-   <Route exact path="/creators" element={<Creator/>}/>
-   <Route exact path="/about" element={<About/>}/>
-   <Route exact path="/contact"element={<Contact/>}/>
-   <Route exact path="/login"element={<Login/>}/>
-   <Route path="/course-schedule" element={<CourseSchedule />} />
-   <Route exact path="/register"element={<Register/>}/>
-   <Route exact path="/dashboard"element={<Dasboard/>}/>
-
-   <Route exact path="/courses/:id" element={<Detail />} />
-  
-   <Route path="/contests" element={<AllContests />} />
-
-   </Routes>
-  { !hideNavbarFooter&&<Footer/>}
-  
-
-   </>
-=======
     <>
       {!hideNavbarFooter && <Navbar />}
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/courses" element={<Courses />} />
-        <Route exact path="/creators" element={<Creator />} />
-        <Route exact path="/about" element={<About />} />
-        <Route exact path="/contact" element={<Contact />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/register" element={<Register />} />
-        <Route exact path="/dashboard" element={<Dasboard />} />
-        <Route exact path="/courses/:id" element={<Detail />} />
-        <Route exact path="/results" element={<Results />} /> {/* Add the Results route */}
+        <Route path="/" element={<Home />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:id" element={<Detail />} />
+        <Route path="/creators" element={<Creator />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Fixed typo */}
+        <Route path="/course-schedule" element={<CourseSchedule />} />
+        {/* <Route path="/results" element={<Results />} /> ✅ Route added */}
+        <Route path="/contests" element={<AllContests />} /> {/* ✅ Route added */}
       </Routes>
       {!hideNavbarFooter && <Footer />}
     </>
->>>>>>> 3dcb85f2c63072944f0bb4b3e4f64288f000bfb6
   );
 }
 
