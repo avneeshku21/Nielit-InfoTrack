@@ -27,38 +27,40 @@ function Courses() {
 
   return (
     <div className="container mx-auto my-12 p-4">
-      <h1 className=" text-center text-2xl font-bold mb-5">All COURSES</h1>
-      <p className="text-center mb-8">
+      <h1 className="text-center text-3xl font-extrabold mb-5 text-gray-800">
+        All COURSES
+      </h1>
+      <p className="text-center mb-8 text-gray-600">
         Explore a variety of courses across different domains.
       </p>
 
       {loading ? (
-        <div className="text-center">Loading...</div>
+        <div className="text-center text-lg font-medium">Loading...</div>
       ) : error ? (
         <div className="text-center text-red-500">{error}</div>
       ) : courses.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          {courses.map((course) => ( // ✅ Fixed incorrect variable name
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+          {courses.map((course) => (
             <Link
-              to={`/course/${course._id}`} // ✅ Fixed incorrect reference
+              to={`/course/${course._id}`}
               key={course._id}
-              className="relative rounded-lg overflow-hidden shadow-md transform hover:scale-105 transition-transform duration-300"
+              className="relative bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300"
             >
               <img
-                src={course?.courseImg?.url || "https://via.placeholder.com/300"} // ✅ Make sure "image.url" matches backend schema
+                src={course?.courseImg?.url || "https://via.placeholder.com/300"}
                 alt={course?.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-52 object-cover"
               />
-              <div className="absolute inset-0 bg-black opacity-30"></div>
-              <div className="absolute bottom-4 left-4 text-red">
-                <h2 className="text-lg font-semibold">{course?.title}</h2>
-                <p className="text-sm">{course?.category}</p>
+              <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+              <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent text-white">
+                <h2 className="text-lg font-bold">{course?.title}</h2>
+                <p className="text-sm opacity-90">{course?.category}</p>
               </div>
             </Link>
           ))}
         </div>
       ) : (
-        <div className="text-center">No courses available.</div>
+        <div className="text-center text-lg text-gray-500">No courses available.</div>
       )}
     </div>
   );
