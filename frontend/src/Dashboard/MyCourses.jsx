@@ -8,7 +8,7 @@ function MyCourses() {
   useEffect(() => {
     const fetchMyCourses = async () => {
       try {
-        const { data } = await axios.get(
+      const { data } = await axios.get(
           "http://localhost:4001/api/courses/myCourse",
           { withCredentials: true }
         );
