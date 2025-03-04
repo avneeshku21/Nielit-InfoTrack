@@ -65,7 +65,12 @@ function Navbar() {
               
               <Link to="/contests" className="hover:text-blue-600">CONTESTS</Link>
               <Link to="/results" className="hover:text-blue-600">RESULTS</Link>
-              <Link to="course-schedule" className="hover:text-blue-600">SCHEDULE</Link>
+              {isAdmin && (
+  <Link to="/create-schedule" className="hover:text-blue-600">
+    SCHEDULE
+  </Link>
+)}
+
             </ul>
 
             {/* Mobile Menu Icon */}
@@ -117,7 +122,11 @@ function Navbar() {
               <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTACT</Link>
               <Link to="/contests" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTESTS</Link>
               <Link to="/results" className="hover:text-blue-600" onClick={() => setShow(false)}>RESULTS</Link>
-              <Link to="/course-schedule"className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link>
+              {isAdmin && (
+  <Link to="/create-schedule" className="hover:text-blue-600">
+    SCHEDULE
+  </Link>
+)}
 
               {/* Show Dashboard button for Admins */}
               {isAdmin && (

@@ -16,6 +16,7 @@ import Detail from "./pages/Details.jsx";
 import CourseSchedule from "./pages/CourseSchedule.jsx";
 import Results from "./pages/Results.jsx"; // ✅ Correct placement
 import AllContests from "./pages/AllContests.jsx";
+import Update from "./Dashboard/Update.jsx";
 
 function App() {
   const location = useLocation();
@@ -36,7 +37,11 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<Dashboard />} /> {/* ✅ Fixed typo */}
+        <Route path="/dashboard" element={<Dashboard />} /> 
+        <Route path="/courses/update/:id" element={<Update/>} /> 
+        
+        
+        {/* ✅ Fixed typo */}
         <Route path="/course-schedule" element={<CourseSchedule />} />
         <Route path="/results" element={<Results />} /> ✅ Route added
         <Route path="/contests" element={<AllContests />} /> {/* ✅ Route added */}
