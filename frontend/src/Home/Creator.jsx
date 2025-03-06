@@ -23,7 +23,7 @@ function Creator() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-semibold mb-6">Popular Creators</h1>
+      <h1 className="text-2xl font-semibold mb-6">Faculty Memebers</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 my-5">
         {admin.length > 0 ? (
           admin.slice(0, 6).map((element) => (
@@ -43,7 +43,7 @@ function Creator() {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500">No creators found.</p>
+          <p className="text-center text-gray-500">No Faculty found.</p>
         )}
       </div>
     </div>

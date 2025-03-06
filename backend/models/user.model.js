@@ -44,6 +44,31 @@ password:{
     required:true,
 
 },
+address: { type: String, default: "" },
+
+
+currentCourse: 
+  { type: String,
+     default: "" },
+
+college: 
+  { type: String, 
+    default: ""
+ },
+
+  cgpa: 
+  { type: Number, 
+    default: null },
+
+  relevantCoursework: 
+  { type: [String], default: [] },
+
+dateofbirth: {
+    type:Number,
+    required:true,
+
+},
+
 token:{
     type:String
 },
@@ -53,4 +78,4 @@ createdAt:{
 }
 
 })
-export const User=mongoose.model("User",userSchema)
+export const User=mongoose.model("User",userSchema,)

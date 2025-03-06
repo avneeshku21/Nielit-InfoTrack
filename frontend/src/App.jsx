@@ -13,10 +13,11 @@ import Dashboard from "./pages/Dashboard.jsx"; // ✅ Fixed Typo (Dashboard)
 import { useAuth } from "./context/AuthProvider.jsx";
 import Creator from "./Home/Creator.jsx";
 import Detail from "./pages/Details.jsx";
-import CourseSchedule from "./pages/CourseSchedule.jsx";
+// import CourseSchedule from "./pages/CourseSchedule.jsx";
 import Results from "./pages/Results.jsx"; // ✅ Correct placement
 import AllContests from "./pages/AllContests.jsx";
 import Update from "./Dashboard/Update.jsx";
+import EditProfile from "./pages/EditProfile.jsx";
 
 function App() {
   const location = useLocation();
@@ -39,10 +40,12 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} /> 
         <Route path="/courses/update/:id" element={<Update/>} /> 
+        <Route path="/edit-profile/:id" element={<EditProfile/>} /> 
+        
         
         
         {/* ✅ Fixed typo */}
-        <Route path="/course-schedule" element={<CourseSchedule />} />
+        {/* <Route path="/create-schedule" element={<CreateSchedule />} /> */}
         <Route path="/results" element={<Results />} /> ✅ Route added
         <Route path="/contests" element={<AllContests />} /> {/* ✅ Route added */}
       </Routes>
