@@ -9,7 +9,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { staticData } from "../studentdata";
 
 const Results = () => {
   const courses = [
@@ -21,12 +20,36 @@ const Results = () => {
 
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const key = `${selectedCourse.name}-${selectedCourse.batch}`;
-    console.log("Selected key:", key); // Debugging
-    console.log("Results:", staticData[key]); // Debugging
-    setResults(staticData[key] || []);
+    const fetchResults = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(
+          `http://localhost:4001/api/results?course=${selectedCourse.name}&batch=${selectedCourse.batch}`,
+          {
+            credentials: "include", // If you're using cookies for authentication
+          }
+        );
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch results: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setResults(data || []);
+      } catch (err) {
+        setError(err.message);
+        setResults([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchResults();
   }, [selectedCourse]);
 
   const averageGrade =
@@ -35,7 +58,7 @@ const Results = () => {
           results.reduce((sum, result) => sum + parseFloat(result.grade), 0) /
           results.length
         ).toFixed(2)
-      : "N/A"; // Avoid NaN issue
+      : "N/A";
 
   const gradeDistribution = [
     { range: "0-20", students: results.filter((r) => r.grade <= 20).length },
@@ -71,52 +94,59 @@ const Results = () => {
         </select>
       </div>
 
-      <div className="mb-8">
-        <h2 className="text-2xl font-semibold mb-4">
-          Overall Performance for {selectedCourse.name} ({selectedCourse.batch} Batch)
-        </h2>
-        <p className="text-lg">
-          Average Grade: <span className="font-bold">{averageGrade}</span>
-        </p>
-        <div className="mt-4 h-96">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={gradeDistribution} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="range" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="students" fill="#8884d8" name="Number of Students" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+      {loading && <p>Loading results...</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
 
-      <h2 className="text-2xl font-semibold mb-4">
-        Student Results for {selectedCourse.name} ({selectedCourse.batch} Batch)
-      </h2>
-      <table className="min-w-full bg-white border border-gray-300">
-        <thead>
-          <tr>
-            <th className="py-2 px-4 border-b">ID</th>
-            <th className="py-2 px-4 border-b">Name</th>
-            <th className="py-2 px-4 border-b">Course</th>
-            <th className="py-2 px-4 border-b">Batch</th>
-            <th className="py-2 px-4 border-b">Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          {results.map((result) => (
-            <tr key={result.id} className="hover:bg-gray-100">
-              <td className="py-2 px-4 border-b text-center">{result.id}</td>
-              <td className="py-2 px-4 border-b text-center">{result.name}</td>
-              <td className="py-2 px-4 border-b text-center">{selectedCourse.name}</td>
-              <td className="py-2 px-4 border-b text-center">{selectedCourse.batch}</td>
-              <td className="py-2 px-4 border-b text-center">{result.grade}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {!loading && !error && (
+        <>
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">
+              Overall Performance for {selectedCourse.name} ({selectedCourse.batch} Batch)
+            </h2>
+            <p className="text-lg">
+              Average Grade: <span className="font-bold">{averageGrade}</span>
+            </p>
+            <div className="mt-4 h-96">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={gradeDistribution} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="range" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="students" fill="#8884d8" name="Number of Students" />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-semibold mb-4">
+            Student Results for {selectedCourse.name} ({selectedCourse.batch} Batch)
+          </h2>
+          <table className="min-w-full bg-white border border-gray-300">
+            <thead>
+              <tr>
+                <th className="py-2 px-4 border-b">ID</th>
+                <th className="py-2 px-4 border-b">Name</th>
+                <th className="py-2 px-4 border-b">Course</th>
+                <th className="py-2 px-4 border-b">Batch</th>
+                <th className="py-2 px-4 border-b">Grade</th>
+              </tr>
+            </thead>
+            <tbody>
+              {results.map((result) => (
+                <tr key={result.id} className="hover:bg-gray-100">
+                  <td className="py-2 px-4 border-b text-center">{result.id}</td>
+                  <td className="py-2 px-4 border-b text-center">{result.name}</td>
+                  <td className="py-2 px-4 border-b text-center">{selectedCourse.name}</td>
+                  <td className="py-2 px-4 border-b text-center">{selectedCourse.batch}</td>
+                  <td className="py-2 px-4 border-b text-center">{result.grade}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </div>
   );
 };

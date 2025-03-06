@@ -9,6 +9,7 @@ import { getAllCourses } from "./controller/course.controller.js"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import courseScheduleRoutes from "./routes/courseSchedule.route.js";
+import resultRoute from "./routes/result.route.js";
 
 const app = express()
 dotenv.config()
@@ -81,6 +82,22 @@ cloudinary.config({
   api_key:process.env.CLOUD_API_KEY, 
   api_secret: process.env.CLOUD_SECRET_KEY // Click 'View API Keys' above to copy your API secret
 });
+
+
+
+
+// results:
+app.use("/api/users", userRoute);
+app.use("/api/courseSchedule", courseScheduleRoutes);
+app.use("/api/courses", courseRoute);
+app.use("/api/results", resultRoute);
+
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
