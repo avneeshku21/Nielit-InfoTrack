@@ -1,13 +1,14 @@
 import express from 'express';
-import { getAdmins, getMyProfile, login, logout, register } from '../controller/user.controller.js';
+import { getAdmins, getMyProfile, login, logout, register, updateProfile } from '../controller/user.controller.js'; // Add updateProfile
 import { isAuthenticated } from '../middleware/authUser.js';
 
-const router = express.Router(); // Use `router` consistently
+const router = express.Router();
 
 router.post('/register', register);
-router.post('/login',login)
-router.get('/logout',isAuthenticated,logout)
-router.get('/myProfile',isAuthenticated,getMyProfile)
-router.get("/admins",getAdmins)
+router.post('/login', login);
+router.get('/logout', isAuthenticated, logout);
+router.get('/myProfile', isAuthenticated, getMyProfile);
+router.get("/admins", getAdmins);
+router.put('/myProfile', isAuthenticated, updateProfile);  
 
-export default router; // Export the router
+export default router;
