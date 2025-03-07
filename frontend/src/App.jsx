@@ -16,6 +16,7 @@ import Detail from "./pages/Details.jsx";
 // import CourseSchedule from "./pages/CourseSchedule.jsx";
 import Results from "./pages/Results.jsx"; // ✅ Correct placement
 import AllContests from "./pages/AllContests.jsx";
+import UserProfile from "./pages/UserProfile.jsx";
 import Update from "./Dashboard/Update.jsx";
 import EditProfile from "./pages/EditProfile.jsx";
 
@@ -48,6 +49,8 @@ function App() {
         {/* <Route path="/create-schedule" element={<CreateSchedule />} /> */}
         <Route path="/results" element={<Results />} /> ✅ Route added
         <Route path="/contests" element={<AllContests />} /> {/* ✅ Route added */}
+
+        <Route path="/myProfile" element={<UserProfile />} />
       </Routes>
       {!hideNavbarFooter && <Footer />}
     </>

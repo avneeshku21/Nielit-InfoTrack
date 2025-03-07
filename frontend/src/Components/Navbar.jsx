@@ -62,13 +62,13 @@ function Navbar() {
               <Link to="/courses" className="hover:text-blue-600">COURSE</Link>
               <Link to="/creators" className="hover:text-blue-600">MEMBERS</Link>
               <Link to="/about" className="hover:text-blue-600">ABOUT</Link>
-              
+
               <Link to="/contests" className="hover:text-blue-600">CONTESTS</Link>
               <Link to="/results" className="hover:text-blue-600">RESULTS</Link>
-              {/* {isAdmin && (
-  <Link to="/create-schedule" className="hover:text-blue-600">
-    SCHEDULE
-  </Link> */}
+//               {{isAdmin && (
+//   <Link to="/create-schedule" className="hover:text-blue-600">
+//     SCHEDULE
+//   </Link>}
 
 
             </ul>
@@ -82,11 +82,25 @@ function Navbar() {
           {/* Right Section */}
           <div className="space-x-2 hidden md:flex items-center">
             {/* Show Dashboard button only for Admins */}
-            {isAdmin && (
-              <Link to="/dashboard" className="bg-blue-600 text-white font-semibold hover:bg-blue-800 duration-300 px-4 py-2 rounded-md">
+            {isAuthenticated && isAdmin && (
+              <Link
+                to="/dashboard"
+                className="bg-blue-600 text-white font-semibold hover:bg-blue-800 duration-300 px-4 py-2 rounded-md"
+              >
                 Dashboard
               </Link>
             )}
+
+//             {Show My Profile button only for authenticated non-admin users}
+            {isAuthenticated && !isAdmin && (
+              <Link
+                to="/myProfile"
+                className="bg-blue-600 text-white font-semibold hover:bg-blue-800 duration-300 px-4 py-2 rounded-md"
+              >
+                My Profile
+              </Link>
+            )}
+
 
             {/* Show Logout and Profile if authenticated, otherwise show Login */}
             {isAuthenticated ? (
@@ -122,16 +136,31 @@ function Navbar() {
               <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTACT</Link>
               <Link to="/contests" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTESTS</Link>
               <Link to="/results" className="hover:text-blue-600" onClick={() => setShow(false)}>RESULTS</Link>
-              {/* {isAdmin && (
+
+              <Link to="/course-schedule" className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link>
+            {/* {isAdmin && (
   <Link to="/create-schedule" className="hover:text-blue-600">
     SCHEDULE
   </Link> */}
 
 
               {/* Show Dashboard button for Admins */}
-              {isAdmin && (
-                <Link to="/dashboard" className="hover:text-blue-600" onClick={() => setShow(false)}>
-                  DASHBOARD
+              {isAuthenticated && isAdmin && (
+                <Link
+                  to="/dashboard"
+                  className="bg-blue-600 text-white font-semibold hover:bg-blue-800 duration-300 px-4 py-2 rounded-md"
+                >
+                  Dashboard
+                </Link>
+              )}
+
+              {/* Show My Profile button only for authenticated non-admin users */}
+              {isAuthenticated && !isAdmin && (
+                <Link
+                  to="/myProfile"
+                  className="bg-blue-600 text-white font-semibold hover:bg-blue-800 duration-300 px-4 py-2 rounded-md"
+                >
+                  My Profile
                 </Link>
               )}
 
