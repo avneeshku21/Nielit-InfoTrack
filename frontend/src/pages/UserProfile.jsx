@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthProvider";
 
 function UserProfile() {
-  const { profile, setProfile } = useAuth(); // Assuming setProfile updates context
+  const { profile, setProfile } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: profile?.name || "",
@@ -74,17 +73,6 @@ function UserProfile() {
     }
   };
 
-
-import React from "react";
-import { useAuth } from "../context/AuthProvider";
-
-function UserProfile() {
-  const { profile } = useAuth();
-
-  // ✅ Corrected Profile Image Handling
-  const profileImage = profile?.photo?.url || "/default-profile.png";
-
-
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg w-full">
@@ -95,14 +83,15 @@ function UserProfile() {
           </div>
         </div>
         <div className="px-6 py-8 mt-2">
-
           {!isEditing ? (
             <>
               <h2 className="text-center text-2xl font-semibold text-gray-800">{profile?.name || "User"}</h2>
               <p className="text-center text-gray-600 mt-2">{profile?.email || "No Email"}</p>
               <p className="text-center text-gray-600 mt-2">{profile?.phone || "No Phone"}</p>
               <p className="text-center text-gray-600 mt-2">{profile?.education || "No Education"}</p>
-              <p className="text-center text-gray-600 mt-2">{profile?.role === "Admin" ? "Administrator" : "User"}</p>
+              <p className="text-center text-gray-600 mt-2">
+                {profile?.role === "Admin" ? "Administrator" : "User"}
+              </p>
               <button
                 onClick={() => setIsEditing(true)}
                 className="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
@@ -191,18 +180,10 @@ function UserProfile() {
               </div>
             </form>
           )}
-
-          <h2 className="text-center text-2xl font-semibold text-gray-800">{profile?.name || "User"}</h2>
-          <p className="text-center text-gray-600 mt-2">{profile?.email || "No Email"}</p>
-          <p className="text-center text-gray-600 mt-2">{profile?.phone || "No Phone"}</p>
-          <p className="text-center text-gray-600 mt-2">{profile?.role === "User" ? "Administrator" : "User"}</p>
         </div>
       </div>
     </div>
   );
 }
-
-
-export default UserProfile;
 
 export default UserProfile;
