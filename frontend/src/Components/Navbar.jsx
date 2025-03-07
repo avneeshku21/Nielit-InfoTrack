@@ -60,12 +60,17 @@ function Navbar() {
             <ul className="space-x-6 hidden md:flex">
               <Link to="/" className="hover:text-blue-600">HOME</Link>
               <Link to="/courses" className="hover:text-blue-600">COURSE</Link>
-              <Link to="/creators" className="hover:text-blue-600">CREATORS</Link>
+              <Link to="/creators" className="hover:text-blue-600">MEMBERS</Link>
               <Link to="/about" className="hover:text-blue-600">ABOUT</Link>
 
               <Link to="/contests" className="hover:text-blue-600">CONTESTS</Link>
               <Link to="/results" className="hover:text-blue-600">RESULTS</Link>
-              <Link to="course-schedule" className="hover:text-blue-600">SCHEDULE</Link>
+//               {{isAdmin && (
+//   <Link to="/create-schedule" className="hover:text-blue-600">
+//     SCHEDULE
+//   </Link>}
+
+
             </ul>
 
             {/* Mobile Menu Icon */}
@@ -86,7 +91,7 @@ function Navbar() {
               </Link>
             )}
 
-            {/* Show My Profile button only for authenticated non-admin users */}
+//             {Show My Profile button only for authenticated non-admin users}
             {isAuthenticated && !isAdmin && (
               <Link
                 to="/myProfile"
@@ -126,12 +131,18 @@ function Navbar() {
             <ul className="flex flex-col space-y-6 text-xl text-center">
               <Link to="/" className="hover:text-blue-600" onClick={() => setShow(false)}>HOME</Link>
               <Link to="/courses" className="hover:text-blue-600" onClick={() => setShow(false)}>COURSE</Link>
-              <Link to="/creators" className="hover:text-blue-600" onClick={() => setShow(false)}>CREATORS</Link>
+              <Link to="/creators" className="hover:text-blue-600" onClick={() => setShow(false)}>MEMBERS</Link>
               <Link to="/about" className="hover:text-blue-600" onClick={() => setShow(false)}>ABOUT</Link>
               <Link to="/contact" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTACT</Link>
               <Link to="/contests" className="hover:text-blue-600" onClick={() => setShow(false)}>CONTESTS</Link>
               <Link to="/results" className="hover:text-blue-600" onClick={() => setShow(false)}>RESULTS</Link>
+
               <Link to="/course-schedule" className="hover:text-blue-600" onClick={() => setShow(false)}>SCHEDULE</Link>
+            {/* {isAdmin && (
+  <Link to="/create-schedule" className="hover:text-blue-600">
+    SCHEDULE
+  </Link> */}
+
 
               {/* Show Dashboard button for Admins */}
               {isAuthenticated && isAdmin && (

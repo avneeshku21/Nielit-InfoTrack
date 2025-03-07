@@ -159,7 +159,6 @@ export const getAdmins = async (req, res) => {
   }
 };
 
-
 export const updateProfile = async (req, res) => {
   try {
     const user = req.user; // From isAuthenticated middleware
@@ -229,3 +228,58 @@ export const updateProfile = async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+// export const updateMyProfile = async (req, res) => {
+//   try {
+//     const { name, phone, education } = req.body;
+//     let updateData = { name, phone, education };
+
+//     if (req.files && req.files.photo) {
+//       const cloudinaryResponse = await cloudinary.uploader.upload(req.files.photo.tempFilePath);
+//       updateData.photo = {
+//         public_id: cloudinaryResponse.public_id,
+//         url: cloudinaryResponse.url,
+//       };
+//     }
+
+    export const updateMyProfile = async (req, res) => {
+      try {
+        const { name, phone, education } = req.body;
+        
+        if (!req.user || !req.user._id) {
+          return res.status(401).json({ message: "Unauthorized access" });
+        }
+    
+        let updateData = { name, phone, education };
+    
+        // Check if a new photo is uploaded
+        if (req.files && req.files.photo) {
+          const cloudinaryResponse = await cloudinary.uploader.upload(req.files.photo.tempFilePath);
+    
+          if (!cloudinaryResponse || cloudinaryResponse.error) {
+            return res.status(500).json({ message: "Image upload failed." });
+          }
+    
+          updateData.photo = {
+            public_id: cloudinaryResponse.public_id,
+            url: cloudinaryResponse.url,
+          };
+        }
+    
+        // Update user profile
+        const updatedUser = await User.findByIdAndUpdate(req.user._id, updateData, { new: true });
+    
+        if (!updatedUser) {
+          return res.status(404).json({ message: "User not found" });
+        }
+    
+        res.status(200).json({ message: "Profile updated successfully", user: updatedUser });
+      } catch (error) {
+        console.error("Update Profile Error:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+      }
+    };
+    
+
+
+

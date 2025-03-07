@@ -10,13 +10,13 @@ const CreateCourse = () => {
   const [about, setAbout] = useState("");
   const [courseImg, setCourseImg] = useState(null);
   const [preview, setPreview] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
 
   // Handle file selection and show preview
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setCourseImg(file);
 
-    // Create a preview for user
     if (file) {
       setPreview(URL.createObjectURL(file));
     }
@@ -48,8 +48,13 @@ const CreateCourse = () => {
         }
       );
 
+      setSuccessMessage("Course created successfully! Redirecting...");
       toast.success(data.message);
-      navigate("/dashboard");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000); // Delay for better UX
+
     } catch (error) {
       console.error("Error creating course:", error.response);
       toast.error(error.response?.data?.message || "Failed to create course");
@@ -63,8 +68,13 @@ const CreateCourse = () => {
           Create a New Course
         </h2>
 
+        {successMessage && (
+          <div className="mb-4 text-center text-green-600 font-semibold">
+            {successMessage}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Course Title */}
           <input
             type="text"
             placeholder="Course Title"
@@ -74,7 +84,6 @@ const CreateCourse = () => {
             className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white"
           />
 
-          {/* Course Category */}
           <input
             type="text"
             placeholder="Category"
@@ -84,7 +93,6 @@ const CreateCourse = () => {
             className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white"
           />
 
-          {/* About Course */}
           <textarea
             placeholder="About Course"
             value={about}
@@ -94,7 +102,6 @@ const CreateCourse = () => {
             className="w-full px-4 py-2 border rounded-md focus:ring focus:ring-blue-300 dark:bg-gray-700 dark:text-white"
           ></textarea>
 
-          {/* Course Image Upload */}
           <input
             type="file"
             accept="image/*"
@@ -103,14 +110,12 @@ const CreateCourse = () => {
             className="w-full px-4 py-2 border rounded-md bg-white dark:bg-gray-700 dark:text-white"
           />
 
-          {/* Image Preview */}
           {preview && (
             <div className="mt-4 flex justify-center">
               <img src={preview} alt="Course Preview" className="w-32 h-32 rounded-md shadow-md" />
             </div>
           )}
 
-          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition duration-300"
