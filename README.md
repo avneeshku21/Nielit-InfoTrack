@@ -98,9 +98,10 @@ Enrollment options and deadlines
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: JSON Web Token (JWT)
-- **Styling**: CSS/Tailwind/Bootstrap (choose your styling library)
+- **Styling**: CSS/Tailwind (choose your styling library)
 - **API Documentation**: Swagger (optional)
-- **AllCoding Contest**: AllCoding Contest is a competitive coding platform where participants solve algorithmic and logical problems within a given time frame.  https://contest-hive.vercel.app/
+- **AllCoding Contest**: AllCoding Contest is a competitive coding platform where participants solve algorithmic and logical problems within a given time frame.
+-  https://contest-hive.vercel.app/
 ## 📂 Directory Structure
 git clone https://github.com/avneeshku021/Nielit-InfoTrack.git
 cd your-repo-name
