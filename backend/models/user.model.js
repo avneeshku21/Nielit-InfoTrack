@@ -63,11 +63,11 @@ college:
   relevantCoursework: 
   { type: [String], default: [] },
 
-dateofbirth: {
-    type:Number,
-    required:true,
+// dateofbirth: {
+//     type:Number,
+//     required:true,
 
-},
+// },
 
 token:{
     type:String
